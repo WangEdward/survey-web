@@ -1,0 +1,53 @@
+<script setup>
+import Options from "./Options.vue";
+</script>
+
+<script>
+export default {
+  name: "Card",
+  components: {
+    Options,
+  },
+  props: {
+    qid: {
+      type: String,
+      required: true,
+    },
+    qindex: {
+      type: Number,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      question: null,
+    };
+  },
+  methods: {
+    async fetchCard() {
+      this.question = null;
+      const response = await fetch(
+        `http://localhost:8080/mcq/byid/${this.qid}`
+      );
+      this.question = await response.json();
+      console.log(this.question);
+    },
+  },
+  mounted() {
+    this.fetchCard();
+  },
+};
+</script>
+
+<template>
+  <div class="card">
+    <h3>Question {{ qindex + 1 }} / 20</h3>
+    <h1 v-if="!question">Loading...</h1>
+    <div class="question" v-if="question">
+      <h2>{{ question.questionDetail }}</h2>
+      <Options :options="question.options" />
+    </div>
+    <!-- <pre e>{{ question.questionDetail }}</pre>
+    <Selections  :options="question.options" /> -->
+  </div>
+</template>
