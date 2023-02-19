@@ -10,36 +10,42 @@ export default {
   data() {
     return {
       qindex: 0,
-      qid: "638c95c678624c7a42822ad6",
+      qlist: null,
     };
+  },
+  methods: {
+    async fetchQuestions() {
+      this.qlist = null;
+      const response = await fetch(`http://localhost:8080/mcq/all_mcq_ids`);
+      this.qlist = await response.json();
+      console.log(this.qlist);
+    },
+    nextCard() {
+      this.qindex++;
+    },
   },
   watch: {
     // check score
+  },
+  mounted() {
+    this.fetchQuestions();
   },
 };
 </script>
 
 <template>
   <!-- <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="./assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
   </header> -->
 
   <main>
-    <Card :qindex="qindex" :qid="qid"></Card>
-    <button @click="qindex++">
-      <span class="text">next </span>
-      <span class="arrow">&rarr;</span>
-    </button>
+    <h3 v-if="!qlist">Loading...</h3>
+    <div class="qcontainer" v-if="qlist">
+      <Card :qindex="qindex" :qid="qlist[qindex]"></Card>
+      <button @click="nextCard">
+        <span class="text">next </span>
+        <span class="arrow">&rarr;</span>
+      </button>
+    </div>
   </main>
 </template>
 

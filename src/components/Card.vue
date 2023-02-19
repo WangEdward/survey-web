@@ -36,6 +36,13 @@ export default {
   mounted() {
     this.fetchCard();
   },
+  watch: {
+    qid: {
+      handler() {
+        this.fetchCard();
+      },
+    },
+  },
 };
 </script>
 
