@@ -14,6 +14,7 @@ export default {
       qtotal: 20,
       cardScore: 0,
       totalScore: 0,
+      isDisabled: true,
     };
   },
   methods: {
@@ -29,6 +30,7 @@ export default {
       this.totalScore += this.cardScore;
       console.log("total score:" + this.totalScore);
       this.qindex++;
+      this.isDisabled = true;
     },
   },
   watch: {
@@ -53,9 +55,9 @@ export default {
         :qtotal="qtotal"
         :qindex="qindex"
         :qid="qlist[qindex]"
-        @qscore="(n) => (cardScore = n)"
+        @qscore="(n) => (cardScore = n) && (isDisabled = false)"
       ></Card>
-      <button @click="nextCard">
+      <button @click="nextCard" :disabled="isDisabled">
         <span class="text">next </span>
         <span class="arrow">&rarr;</span>
       </button>

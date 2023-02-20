@@ -46,6 +46,7 @@ export default {
     qid: {
       handler() {
         this.fetchCard();
+        this.qscore = 0;
       },
     },
     qscore: {
