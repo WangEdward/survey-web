@@ -1,11 +1,13 @@
 <script setup>
 import Card from "./components/Card.vue";
+import ResultCard from "./components/ResultCard.vue";
 </script>
 <script>
 export default {
   name: "App",
   components: {
     Card,
+    ResultCard,
   },
   data() {
     return {
@@ -54,8 +56,16 @@ export default {
   <main>
     <h3 v-if="!qlist">Loading...</h3>
     <h3 v-if="qlist && qindex >= qtotal">You have completed the quiz!</h3>
-    <h3 v-if="qlist && qindex >= qtotal">Your total score is {{ totalScore }}</h3>
-    <div class="qcontainer" v-if="qlist&& qindex < qtotal">
+    <h3 v-if="qlist && qindex >= qtotal">
+      Your total score is {{ totalScore }}
+    </h3>
+    <div v-if="qlist && qindex >= qtotal">
+      <ResultCard 
+        :currentScore="totalScore"
+        :totalScore="80"
+      ></ResultCard>
+    </div>
+    <div class="qcontainer" v-if="qlist && qindex < qtotal">
       <Card
         :qtotal="qtotal"
         :qindex="qindex"
@@ -68,7 +78,7 @@ export default {
       </button>
     </div>
   </main>
-  <div class="progress-bar" >
+  <div class="progress-bar">
     <div class="progress-bar__fill" :style="{ width: progress + '%' }"></div>
   </div>
 </template>
