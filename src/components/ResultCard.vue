@@ -35,8 +35,8 @@ export default {
   </div>
   <div class="result">
     <p v-if="currentScore < 45">Within Normal Range</p>
-    <p v-if="currentScore <= 59">Minimal to moderate anxiety</p>
-    <p v-if="currentScore <= 74">Marked to severe anxiety</p>
+    <p v-else-if="currentScore <= 59">Minimal to moderate anxiety</p>
+    <p v-else-if="currentScore <= 74">Marked to severe anxiety</p>
     <p v-if="currentScore > 74">Most extreme anxiety</p>
     <p v-if="currentScore > 59">We suggest that you need to visit a psychologist.</p>
   </div>
