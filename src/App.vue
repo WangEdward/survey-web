@@ -57,7 +57,7 @@ export default {
     <h3 v-if="!qlist">Loading...</h3>
     <h3 v-if="qlist && qindex >= qtotal">You have completed the quiz!</h3>
     <h3 v-if="qlist && qindex >= qtotal">
-      Your total score is {{ totalScore }}
+      Your total score is {{ totalScore }} out of 80
     </h3>
     <div v-if="qlist && qindex >= qtotal">
       <ResultCard 
