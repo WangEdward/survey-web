@@ -46,7 +46,9 @@ export default {
 
   <main>
     <h3 v-if="!qlist">Loading...</h3>
-    <div class="qcontainer" v-if="qlist">
+    <h3 v-if="qlist && qindex >= qtotal">You have completed the quiz!</h3>
+    <h3 v-if="qlist && qindex >= qtotal">Your total score is {{ totalScore }}</h3>
+    <div class="qcontainer" v-if="qlist&& qindex < qtotal">
       <Card
         :qtotal="qtotal"
         :qindex="qindex"
