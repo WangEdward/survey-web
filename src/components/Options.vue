@@ -15,9 +15,11 @@ export default {
       required: true,
     },
   },
+  emits: ['optionScore'],
   methods: {
     submitAnswer(option) {
       this.selectedOption = option.score;
+      this.$emit('optionScore', this.selectedOption)
       // console.log(this.selectedOption);
     },
   },

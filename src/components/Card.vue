@@ -18,9 +18,11 @@ export default {
       required: true,
     },
   },
+  emits: ["qscore"],
   data() {
     return {
       question: null,
+      qscore: 0,
     };
   },
   methods: {
@@ -42,6 +44,12 @@ export default {
         this.fetchCard();
       },
     },
+    qscore: {
+      handler() {
+        console.log(this.qscore);
+        this.$emit("qscore", this.qscore);
+      },
+    },
   },
 };
 </script>
@@ -52,7 +60,10 @@ export default {
     <h1 v-if="!question">Loading...</h1>
     <div class="question" v-if="question">
       <h2>{{ question.questionDetail }}</h2>
-      <Options :options="question.options" />
+      <Options
+        :options="question.options"
+        @option-score="(n) => (qscore = n)"
+      />
     </div>
     <!-- <pre e>{{ question.questionDetail }}</pre>
     <Selections  :options="question.options" /> -->

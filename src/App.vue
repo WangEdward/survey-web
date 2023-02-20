@@ -11,6 +11,8 @@ export default {
     return {
       qindex: 0,
       qlist: null,
+      cardScore: 0,
+      totalScore: 0,
     };
   },
   methods: {
@@ -21,6 +23,8 @@ export default {
       console.log(this.qlist);
     },
     nextCard() {
+      this.totalScore += this.cardScore;
+      console.log('total score:'+this.totalScore);
       this.qindex++;
     },
   },
@@ -40,7 +44,11 @@ export default {
   <main>
     <h3 v-if="!qlist">Loading...</h3>
     <div class="qcontainer" v-if="qlist">
-      <Card :qindex="qindex" :qid="qlist[qindex]"></Card>
+      <Card
+        :qindex="qindex"
+        :qid="qlist[qindex]"
+        @qscore="(n) => (cardScore = n)"
+      ></Card>
       <button @click="nextCard">
         <span class="text">next </span>
         <span class="arrow">&rarr;</span>
