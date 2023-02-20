@@ -17,7 +17,7 @@ export default {
   computed: {
     scorePercentage() {
       console.log(this.currentScore / this.totalScore);
-      return Math.round(((this.currentScore -20) / this.totalScore) * 100);
+      return Math.round(((this.currentScore -20) / (this.totalScore-20)) * 100);
     },
   },
   mounted() {
