@@ -23,6 +23,7 @@ a,
 
 .option {
   display: flex;
+  min-width: 210px;
   align-items: center;
   margin-right: 50%;
   margin-bottom: 10px;
@@ -94,8 +95,8 @@ button:disabled {
   }
 
   #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* display: grid; */
+    /* grid-template-columns: 1fr 1fr; */
     padding: 0 2rem;
   }
 }
