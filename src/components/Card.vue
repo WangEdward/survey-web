@@ -17,6 +17,10 @@ export default {
       type: Number,
       required: true,
     },
+    qtotal: {
+      type: Number,
+      required: true,
+    },
   },
   emits: ["qscore"],
   data() {
@@ -56,7 +60,7 @@ export default {
 
 <template>
   <div class="card">
-    <h3>Question {{ qindex + 1 }} / 20</h3>
+    <h3>Question {{ qindex + 1 }} / {{ qtotal }}</h3>
     <h1 v-if="!question">Loading...</h1>
     <div class="question" v-if="question">
       <h2>{{ question.questionDetail }}</h2>

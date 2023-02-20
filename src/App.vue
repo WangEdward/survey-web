@@ -11,6 +11,7 @@ export default {
     return {
       qindex: 0,
       qlist: null,
+      qtotal: 20,
       cardScore: 0,
       totalScore: 0,
     };
@@ -21,10 +22,12 @@ export default {
       const response = await fetch(`http://localhost:8080/mcq/all_mcq_ids`);
       this.qlist = await response.json();
       console.log(this.qlist);
+      this.qtotal = this.qlist.length;
+      console.log(this.qtotal);
     },
     nextCard() {
       this.totalScore += this.cardScore;
-      console.log('total score:'+this.totalScore);
+      console.log("total score:" + this.totalScore);
       this.qindex++;
     },
   },
@@ -45,6 +48,7 @@ export default {
     <h3 v-if="!qlist">Loading...</h3>
     <div class="qcontainer" v-if="qlist">
       <Card
+        :qtotal="qtotal"
         :qindex="qindex"
         :qid="qlist[qindex]"
         @qscore="(n) => (cardScore = n)"
