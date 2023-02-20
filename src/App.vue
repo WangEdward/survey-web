@@ -39,6 +39,11 @@ export default {
   mounted() {
     this.fetchQuestions();
   },
+  computed: {
+    progress() {
+      return (this.qindex / this.qtotal) * 100;
+    },
+  },
 };
 </script>
 
@@ -63,6 +68,9 @@ export default {
       </button>
     </div>
   </main>
+  <div class="progress-bar" >
+    <div class="progress-bar__fill" :style="{ width: progress + '%' }"></div>
+  </div>
 </template>
 
 <style scoped>
