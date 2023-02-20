@@ -23,9 +23,9 @@ a,
 
 .option {
   display: flex;
-  min-width: 210px;
+  width: 210px;
   align-items: center;
-  margin-right: 50%;
+  /* margin-right: 50%; */
   margin-bottom: 10px;
   padding: 3px;
   border: 2px solid #ccc;
@@ -91,7 +91,9 @@ button:disabled {
 @media (min-width: 1024px) {
   body {
     display: flex;
-    place-items: center;
+    place-items: center stretch;
+    float: left;
+    left: 20%;
   }
 
   #app {
